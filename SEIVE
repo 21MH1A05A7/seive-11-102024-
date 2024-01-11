@@ -1,0 +1,131 @@
+
+SEGMENTATION SEIVE
+====================
+#include <bits/stdc++.h>
+using namespace std;
+
+// vector<int> v1;
+
+vector<int> v2;
+vector<int> v;
+vector<int> v1;
+void fseive(int n){
+    v.resize(n,1);
+    v[0]=0;
+    v[1]=0;
+    for(int i=2;i*i<=n;i++){
+        if(v[i]==1){
+            for(int j=i*i;j<n;j+=i){
+                v[j]=0;
+            }
+        }
+    }
+    for(int i=0;i*i<=n;i++){
+        if(v[i]==1){
+            v1.push_back(i);
+        }
+    }
+}
+
+
+void seive(int l,int r){
+    fseive(r);
+    v2.resize(1,r-l);
+    for(int i=0;i<v1.size();i++){
+        int quo=l/v1[i];
+        int nearest=quo*v1[i];
+        if(nearest<l){
+            nearest=nearest+v1[i];
+        }
+        for(int j=nearest;j<=r;j+=i){
+                v2[i]=0;
+        }
+    }
+}
+
+
+
+
+int main(){
+    int l,r;
+    cin>>l>>r;
+    seive(l,r);
+    cout<<"hi";
+    for(int i=0;i<v2.size();i++){
+        cout<<v2[i]<<" ";
+    }
+}
+
+// 210 234
+
+
+SEIVE METHOD TO SEARCH NUMBER OF PRIMES
+==========================================
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{   
+    int t;
+    cin>>t;
+    for(int i=0;i<t;i++)
+    {
+        long long p=1e6+1;
+    int n;
+    vector<long long>prime(p,1);
+    prime[0]=0;
+    prime[1]=0;
+    cin>>n;
+    for(int i=2;i*i<n;i++)
+    {
+        if(prime[i]==1)
+        {
+            for(int j=i*i;j<n;j=j+i)
+            {
+                prime[j]=0;
+            }
+        }
+    }
+    
+    
+    int k=2;
+    int c=0;
+    for(int i=3;i<n;i++)
+    {
+        int k=k+i;
+        if(prime[k] and k<n and prime[i])
+        {
+            c=c+1;
+        }
+        k=2;
+    }
+    cout<<c<<endl;
+    
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
